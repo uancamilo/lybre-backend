@@ -1,4 +1,4 @@
-package com.example.lybre;
+package com.lybre.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LybreApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(LybreApplication.class, args);
+		System.out.println("Mensaje");
 	}
 
 }
