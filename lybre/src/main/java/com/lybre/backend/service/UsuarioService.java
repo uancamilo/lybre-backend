@@ -46,9 +46,4 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);  // Guarda el usuario en la base de datos
     }
 
-    // Validar usuario por email y password
-    public boolean validateUser(String email, String password) {
-        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
-        return usuario.isPresent() && usuario.get().getPassword().equals(password);
-    }
 }
