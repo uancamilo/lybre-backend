@@ -2,6 +2,9 @@ package com.lybre.backend.controller;
 
 import com.lybre.backend.model.Usuario; // Asegúrate de tener este import
 import com.lybre.backend.service.UsuarioService; // Asegúrate de tener este import
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
+@Tag(name = "usuarios", description = "Operaciones relacionadas con usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -50,9 +54,11 @@ public class UsuarioController {
         return usuarios.isEmpty() ? ResponseEntity.notFound().build()
                 : ResponseEntity.ok(usuarios);
     }
-    // Método para guardar un nuevo usuario
-    @PostMapping
-    public ResponseEntity<Usuario> guardarUsuario(@RequestBody Usuario usuario) {
+    @Operation(summary = "Agregar un usuario",
+            description = "Se agrega un usuario que podrá acceder a la base de datos")
+    @PostMapping("/usuarios") // Agrega un path específico si es necesario
+    public ResponseEntity<Usuario> guardarUsuario(
+            @Parameter(description = "El usuario a ser guardado") @RequestBody Usuario usuario) {
         Usuario nuevoUsuario = usuarioService.guardarUsuario(usuario);
         return ResponseEntity.ok(nuevoUsuario);
     }

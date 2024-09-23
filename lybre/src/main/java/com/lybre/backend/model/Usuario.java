@@ -27,7 +27,7 @@ public class Usuario {
     }
 
     // Constructor con parámetros
-    public Usuario(String nombre, String apellido, String email, String password ) {
+    public Usuario( String nombre, String apellido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;

@@ -2,7 +2,6 @@ package com.lybre.backend.service;
 
 import com.lybre.backend.model.Usuario;
 import com.lybre.backend.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,12 @@ import java.util.Optional;
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+
+    // Inyección de dependencias a través del constructor
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     // Buscar usuario por email
     public Optional<Usuario> buscarPorEmail(String email) {
@@ -41,5 +44,11 @@ public class UsuarioService {
 
     public Usuario guardarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);  // Guarda el usuario en la base de datos
+    }
+
+    // Validar usuario por email y password
+    public boolean validateUser(String email, String password) {
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
+        return usuario.isPresent() && usuario.get().getPassword().equals(password);
     }
 }

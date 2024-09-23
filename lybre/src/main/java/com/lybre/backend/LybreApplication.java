@@ -9,7 +9,7 @@ public class LybreApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(LybreApplication.class, args);
-		System.out.println("Mensaje");
+		System.out.println("Backend");
 	}
 
 }
